@@ -12,13 +12,17 @@
 			<h4 class='feedTitle'>All Users Feed</h4>
 			<div class='container'></div>
 		</div>
-		<button type='button' class='feedBtn'>Single Refresh</button>
+		<div class='buttons'>
+			<button type='button' class='feedBtn'>Single Refresh</button>
+			<button type='button' class='autoBtn'>Autoload</button>
+			<button type='button' class='stopBtn'>Stop Autoload</button>
+		</div>
     <script>
 
       $(document).ready(function(){
         var $body = $('.container');
         $body.html('');
-
+				var timer;
         var index = streams.home.length - 1;
 				var origIndex = index // Store original index of first list
         while(index >= 0){
@@ -43,7 +47,18 @@
 					}
 				}
 				
+				var autoTweet = function() {
+					newTweets()
+					timer = setTimeout(autoTweet, 1);
+				}
+				
+				var stopTweets = function() {
+					clearTimeout(timer);
+				}
+				
 				$('.feedBtn').on('click', newTweets);
+				$('.autoBtn').on('click', autoTweet);
+				$('.stopBtn').on('click', stopTweets);
       });
 
     </script>
