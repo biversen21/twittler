@@ -15,20 +15,6 @@
 	padding: 10px;
 }
 
-.feedContainer .buttons {
-	background-color: #F5F5F5;
-	float: right;
-	margin: 10px 10px 0 0;
-	padding: 10px;
-	border: 1px solid black;
-	border-radius: 10%;
-}
-
-.feedBtn, .autoBtn, .stopBtn {
-	float: right;
-	clear: both;
-}
-
 /* Profile view */
 
 .viewProfileContainer {
