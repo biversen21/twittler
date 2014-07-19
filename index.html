@@ -5,13 +5,16 @@
     <script src="data_generator.js"></script>
   </head>
   <body>
+		<button type='button' class='feedBtn'>Single Refresh</button>
+		<div class='feedContainer'>
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
+        var $body = $('.feedContainer');
         $body.html('');
 
         var index = streams.home.length - 1;
+				var origIndex = index // Store original index of first list
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
@@ -19,7 +22,22 @@
           $tweet.appendTo($body);
           index -= 1;
         }
-
+				
+				// Function to reload new tweets
+				var newTweets = function() {
+					$body.html('');
+	        var index = streams.home.length - 1;
+					var origIndex = index  // Store original index of first list
+	        while(index >= 0){
+	          var tweet = streams.home[index];
+	          var $tweet = $('<div></div>');
+            $tweet.text('@' + tweet.user + ': ' + tweet.message);
+	          $tweet.appendTo($body);
+	          index -= 1;
+					}
+				}
+				
+				$('.feedBtn').on('click', newTweets);
       });
 
     </script>
