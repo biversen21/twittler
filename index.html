@@ -3,16 +3,20 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+		<script src='moment.js'></script>
 		<link rel="Stylesheet" href='styles.css' type='text/css'>
   </head>
   <body>
 		<h1 class='title'>Twittler App</h1>
+		<div class='feedContainer'>
+			<h4 class='feedTitle'>All Users Feed</h4>
+			<div class='container'></div>
+		</div>
 		<button type='button' class='feedBtn'>Single Refresh</button>
-		<div class='feedContainer'></div>
     <script>
 
       $(document).ready(function(){
-        var $body = $('.feedContainer');
+        var $body = $('.container');
         $body.html('');
 
         var index = streams.home.length - 1;
@@ -20,7 +24,7 @@
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' created at: ' + tweet.created_at);
+          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' created at: ' + moment(tweet.created_at).fromNow());
           $tweet.appendTo($body);
           index -= 1;
         }
@@ -33,7 +37,7 @@
 	        while(index >= 0){
 	          var tweet = streams.home[index];
 	          var $tweet = $('<div></div>');
-            $tweet.text('@' + tweet.user + ': ' + tweet.message + ' created at: ' + tweet.created_at);
+            $tweet.text('@' + tweet.user + ': ' + tweet.message + ' created at: ' + moment(tweet.created_at).fromNow());
 	          $tweet.appendTo($body);
 	          index -= 1;
 					}

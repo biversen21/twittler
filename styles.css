@@ -4,8 +4,21 @@
 	background-color: #F5F5F5;
 }
 
+.feedTitle {
+	text-align: center;
+	border: 1px solid black;
+}
+
 .feedContainer {
 	float: right;
+}
+
+.container {
 	border: 2px solid black;
 	background-color: #D3D3D3;
+}
+
+.feedBtn {
+	float: right;
+	margin-top: 20px;
 }
