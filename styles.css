@@ -14,11 +14,30 @@
 }
 
 .container {
-	border: 2px solid black;
+	border: 1px solid black;
 	background-color: #D3D3D3;
+	padding: 10px;
+}
+
+.buttons {
+	float: right;
+	margin: 20px 10px 0 0;
+	padding: 10px;
+	border: 1px solid black;
+	border-radius: 10%;
 }
 
 .feedBtn {
 	float: right;
-	margin-top: 20px;
+	clear: both;
+}
+
+.autoBtn {
+	float: right;
+	clear: both;
+}
+
+.stopBtn {
+	float: right;
+	clear: both;
 }
