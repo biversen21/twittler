@@ -19,6 +19,7 @@
 				<button type='button' class='shawn'>View shawn</button>
 				<button type='button' class='sharks'>View sharks</button>
 				<button type='button' class='douglas'>View douglas</button>
+				<button type='button' class='user'>View user</button>
 			</div>
 			<div class='container'></div>
 		</div>
@@ -26,7 +27,7 @@
 		<div class='newTweetContainer'>
 			<h4 class='newTweetTitle'>Add New Tweet</h4>
 			<div class='addNewTweet'>
-				<input type='text' name='newTweet' placeholder='Enter Tweet Here'>
+				<textarea type='text' name='newTweet' placeholder='Enter Tweet Here' rows='4' cols='40'></textarea>
 				<button type='button'>Post Tweet</button>
 			</div>
 		</div>
@@ -51,12 +52,12 @@
 					}
 				}
 				
-				var addProfileTweets = function() {
+				var addProfileTweets = function(username) {
 					var $profile = $('.container');
 					$profile.html('');
-					var index = streams.users.mracus.length - 1;
+					var index = streams.users[username].length - 1;
 					while(index >= 0) {
-						var tweet = streams.users.mracus[index];
+						var tweet = streams.users[username][index];
 						var $tweet = $('<div></div>');
 						$tweet.html('<strong>@' + tweet.user + ': </strong>' + tweet.message + 
 												"<strong class='timestamp'> posted: " + moment(tweet.created_at).fromNow() + '</strong>');
@@ -79,7 +80,10 @@
 				$('.feedBtn').on('click', newTweets);
 				$('.autoBtn').on('click', autoTweet);
 				$('.stopBtn').on('click', stopTweets);
-				$('.mracus').on('click', addProfileTweets);
+				$('.mracus').on('click', function() {return addProfileTweets('mracus');});
+				$('.shawn').on('click', function() {return addProfileTweets('shawndrost');});
+				$('.sharks').on('click', function() {return addProfileTweets('sharksforcheap');});
+				$('.douglas').on('click', function() {return addProfileTweets('douglascalhoun');});
       });
 
     </script>
