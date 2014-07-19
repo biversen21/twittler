@@ -49,7 +49,6 @@
 				var newTweets = function() {
 					$body.html('');
 	        var index = streams.home.length - 1;
-					var origIndex = index  // Store original index of first list
 	        while(index >= 0){
 	          var tweet = streams.home[index];
 	          var $tweet = $('<div></div>');
@@ -57,6 +56,20 @@
 												"<strong class='timestamp'> posted: " + moment(tweet.created_at).fromNow() + '</strong>');
 	          $tweet.appendTo($body);
 	          index -= 1;
+					}
+				}
+				
+				var addProfileTweets = function() {
+					var $profile = $('.container');
+					$profile.html('');
+					var index = streams.users.mracus.length - 1;
+					while(index >= 0) {
+						var tweet = streams.users.mracus[index];
+						var $tweet = $('<div></div>');
+						$tweet.html('<strong>@' + tweet.user + ': </strong>' + tweet.message + 
+												"<strong class='timestamp'> posted: " + moment(tweet.created_at).fromNow() + '</strong>');
+						$tweet.appendTo($profile);
+						index -= 1;
 					}
 				}
 				
@@ -69,16 +82,12 @@
 					clearTimeout(timer);
 				}
 				
-				var addProfileTweets = function() {
-					var $profile = $('.profileContainer');
-					$profile.html('');
-				}
-				
 				newTweets();	// Initial invoke upon page load
 				
 				$('.feedBtn').on('click', newTweets);
 				$('.autoBtn').on('click', autoTweet);
 				$('.stopBtn').on('click', stopTweets);
+				$('.mracus').on('click', addProfileTweets);
       });
 
     </script>
