@@ -12,6 +12,13 @@
 			<h4 class='feedTitle'>All Users Feed</h4>
 			<div class='container'></div>
 		</div>
+		<div class='newTweetContainer'>
+			<h4 class='newTweetTitle'>Add New Tweet</h4>
+			<div class='addNewTweet'>
+				<input type='text' name='newTweet' placeholder='Enter Tweet Here'>
+				<button type='button'>Post Tweet</button>
+			</div>
+		</div>
 		<div class='buttons'>
 			<button type='button' class='feedBtn'>Single Refresh</button>
 			<button type='button' class='autoBtn'>Autoload</button>
@@ -32,7 +39,8 @@
 	        while(index >= 0){
 	          var tweet = streams.home[index];
 	          var $tweet = $('<div></div>');
-            $tweet.text('@' + tweet.user + ': ' + tweet.message + ' created at: ' + moment(tweet.created_at).fromNow());
+	          $tweet.html('<strong>@' + tweet.user + ': </strong>' + tweet.message + 
+												"<strong class='timestamp'> posted: " + moment(tweet.created_at).fromNow() + '</strong>');
 	          $tweet.appendTo($body);
 	          index -= 1;
 					}
