@@ -23,17 +23,8 @@
         var $body = $('.container');
         $body.html('');
 				var timer;
-        var index = streams.home.length - 1;
-				var origIndex = index // Store original index of first list
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + ' created at: ' + moment(tweet.created_at).fromNow());
-          $tweet.appendTo($body);
-          index -= 1;
-        }
 				
-				// Function to reload new tweets
+				// Function to load tweets
 				var newTweets = function() {
 					$body.html('');
 	        var index = streams.home.length - 1;
@@ -55,6 +46,8 @@
 				var stopTweets = function() {
 					clearTimeout(timer);
 				}
+				
+				newTweets();	// Initial invoke upon page load
 				
 				$('.feedBtn').on('click', newTweets);
 				$('.autoBtn').on('click', autoTweet);
