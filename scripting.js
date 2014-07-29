@@ -2,6 +2,7 @@ $(document).ready(function(){
   var $body = $('.container');
   $body.html('');
 	var timer;
+	var visitor = "Brian";
 	
 	// Function to load tweets
 	var newTweets = function(username) {
@@ -40,6 +41,10 @@ $(document).ready(function(){
 	});
 	$('.autoBtn').on('click', autoTweet);
 	$('.stopBtn').on('click', stopTweets);
+	$('.newBtn').on('click', function(msg) {
+		var msg = $('textarea').val();
+		writeTweet(msg, visitor);
+	});
 	$('.container').on('click', 'div a', function(e) {
 		e.preventDefault();
 		var user = $(this).attr('id');
