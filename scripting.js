@@ -7,7 +7,6 @@ $(document).ready(function(){
 	var newTweets = function() {
 		$body.html('');
     var index = streams.home.length - 1;
-		var origIndex = index;
     while(index >= 0){
       var tweet = streams.home[index];
       var $tweet = $("<div></div>");
@@ -25,8 +24,7 @@ $(document).ready(function(){
 	}
 	
 	var addProfileTweets = function(username) {
-		var $profile = $('.container');
-		$profile.html('');
+		$body.html('');
 		var index = streams.users[username].length - 1;
 		while(index >= 0) {
 			var tweet = streams.users[username][index];
@@ -39,7 +37,7 @@ $(document).ready(function(){
       var $content = (tweet.message + "<strong class='timestamp'> posted: " + moment(tweet.created_at).fromNow() + '</strong>');
 			$tweet.append($user);
 			$tweet.append($content);
-			$tweet.appendTo($profile);
+			$tweet.appendTo($body);
 			index -= 1;
 		}
 	}
@@ -55,10 +53,14 @@ $(document).ready(function(){
 	
 	newTweets();	// Initial invoke upon page load
 	
-	$('.feedBtn').on('click', newTweets);
+	$('.feedBtn').on('click', function(e) {
+		e.preventDefault();
+		newTweets();
+	})
 	$('.autoBtn').on('click', autoTweet);
 	$('.stopBtn').on('click', stopTweets);
-	$('div a').click(function() {
+	$('.container').on('click', 'div a', function(e) {
+		e.preventDefault();
 		var user = $(this).attr('id');
 		addProfileTweets(user);
 		console.log(user);

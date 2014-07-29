@@ -9,19 +9,19 @@
 		<link rel="stylesheet" href='styles.css' type='text/css'>
   </head>
   <body>
-		<h1 class='title'>Twittler App</h1>
+		<h1 class='navbar navbar-default'>Twittler App</h1>
 		
-		<div class='feedContainer'>
+		<div class='feedContainer col-md-8'>
 			<h4 class='feedTitle'>Tweet Feed</h4>
 			<div class='feedButtons'>
-				<button type='button' class='feedBtn'>Full Feed</button>
-				<button type='button' class='autoBtn'>Autoload</button>
-				<button type='button' class='stopBtn'>Stop Autoload</button>
+				<button type='button' class='feedBtn btn-primary'>Full Feed</button>
+				<button type='button' class='autoBtn btn-primary'>Autoload</button>
+				<button type='button' class='stopBtn btn-danger'>Stop Autoload</button>
 			</div>
-			<div class='container'></div>
+			<div class='container col-md-8'></div>
 		</div>
 				
-		<div class='newTweetContainer'>
+		<div class='newTweetContainer col-md-4'>
 			<h4 class='newTweetTitle'>Add New Tweet</h4>
 			<div class='addNewTweet'>
 				<textarea type='text' name='newTweet' placeholder='Enter Tweet Here' rows='4' cols='40'></textarea>
