@@ -15,11 +15,6 @@
 				<button type='button' class='feedBtn'>Full Feed</button>
 				<button type='button' class='autoBtn'>Autoload</button>
 				<button type='button' class='stopBtn'>Stop Autoload</button>
-				<button type='button' class='mracus'>View mracus</button>
-				<button type='button' class='shawn'>View shawn</button>
-				<button type='button' class='sharks'>View sharks</button>
-				<button type='button' class='douglas'>View douglas</button>
-				<button type='button' class='user'>View user</button>
 			</div>
 			<div class='container'></div>
 		</div>
@@ -42,11 +37,18 @@
 				var newTweets = function() {
 					$body.html('');
 	        var index = streams.home.length - 1;
+					var origIndex = index;
 	        while(index >= 0){
 	          var tweet = streams.home[index];
-	          var $tweet = $('<div></div>');
-	          $tweet.html('<strong>@' + tweet.user + ': </strong>' + tweet.message + 
-												"<strong class='timestamp'> posted: " + moment(tweet.created_at).fromNow() + '</strong>');
+	          var $tweet = $("<div></div>");
+						var $user = $('<a/>', {
+						          html: '@' + tweet.user + ': ',
+						          id: tweet.user,
+						          href: "#"
+						          });
+	          var $content = (tweet.message + "<strong class='timestamp'> posted: " + moment(tweet.created_at).fromNow() + '</strong>');
+						$tweet.append($user);
+						$tweet.append($content);
 	          $tweet.appendTo($body);
 	          index -= 1;
 					}
@@ -58,9 +60,15 @@
 					var index = streams.users[username].length - 1;
 					while(index >= 0) {
 						var tweet = streams.users[username][index];
-						var $tweet = $('<div></div>');
-						$tweet.html('<strong>@' + tweet.user + ': </strong>' + tweet.message + 
-												"<strong class='timestamp'> posted: " + moment(tweet.created_at).fromNow() + '</strong>');
+						var $tweet = $("<div></div>");
+						var $user = $('<a/>', {
+						          html: '@' + tweet.user + ': ',
+						          id: tweet.user,
+						          href: "#"
+						          });
+	          var $content = (tweet.message + "<strong class='timestamp'> posted: " + moment(tweet.created_at).fromNow() + '</strong>');
+						$tweet.append($user);
+						$tweet.append($content);
 						$tweet.appendTo($profile);
 						index -= 1;
 					}
@@ -80,10 +88,11 @@
 				$('.feedBtn').on('click', newTweets);
 				$('.autoBtn').on('click', autoTweet);
 				$('.stopBtn').on('click', stopTweets);
-				$('.mracus').on('click', function() {return addProfileTweets('mracus');});
-				$('.shawn').on('click', function() {return addProfileTweets('shawndrost');});
-				$('.sharks').on('click', function() {return addProfileTweets('sharksforcheap');});
-				$('.douglas').on('click', function() {return addProfileTweets('douglascalhoun');});
+				$('div a').click(function() {
+					var user = $(this).attr('id');
+					addProfileTweets(user);
+					console.log(user);
+				})
       });
 
     </script>
