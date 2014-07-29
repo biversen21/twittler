@@ -2,7 +2,10 @@ $(document).ready(function(){
   var $body = $('.container');
   $body.html('');
 	var timer;
-	var visitor = "Brian";
+	var visitor;
+	while(!visitor) { 
+		visitor = prompt("Please enter your name: ")
+	};
 	
 	// Function to load tweets
 	var newTweets = function(username) {
